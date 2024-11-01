@@ -32,3 +32,19 @@ describe('App', () => {
     expect(starWarsImage).toHaveAttribute('src', "https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg");  })
 })
 
+  it('should render a button', () => {
+    render(<App />)
+    const button = screen.getByRole('button')
+    expect(button).toBeInTheDocument()
+  })
+
+  it('should fetch movies when button is clicked', async () => {
+    render(<App />)
+    const button = screen.getByRole('button', { name: /fetch movies/i })
+    
+    userEvent.click(button)
+    
+    const starWarsImage = await screen.findByRole('img', { name: /Star Wars: Episode IV - A New Hope/i })
+    expect(starWarsImage).toBeInTheDocument()
+  })
+

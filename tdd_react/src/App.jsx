@@ -15,21 +15,23 @@ function App() {
       }
     };
 
-    fetchMovies();
+   fetchMovies();
   }, []);
 
 
   return (
     
+    <div>
+      <button onClick={setMovies}>Fetch Movies</button>
       <div>
       {movies.map(movie => (
         <div>
       
-        <img src ={movie.poster} alt = "starwars"/>
+        <img src ={movie.poster} alt = {movie.title}/>
         </div>
       ))}
       </div>
-  
+    </div>
   )
 }
 
